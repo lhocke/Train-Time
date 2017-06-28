@@ -1,0 +1,20 @@
+#intro, #schedule-header, #form-header{
+	background: #e57b1f;
+}
+body{
+	background: #4191d2;
+}
+#schedule-body, #form-body{
+	background: #efb17b;
+}
+#train-schedule{
+	background: #61d2f5;
+}
+
+.container{
+	margin-top: 10px;
+}
+
+#schedule-header, #form-header{
+	font-weight: bold;
+}
