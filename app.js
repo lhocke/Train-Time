@@ -42,7 +42,9 @@ $('#submit-button').on('click', function(event){
 if (currentTime === moment().startOf("day")){
   database.ref("child", function(snap){
     var startReset = moment(snap.val().start).add(1, 'd');
-    
+    database.ref("child").update({
+      start : startReset
+    })
   })
 }
 
