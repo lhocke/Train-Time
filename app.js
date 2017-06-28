@@ -11,7 +11,7 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 var currentTime = moment();
-console.log(currentTime);
+// console.log(currentTime);
 
 $('#submit-button').on('click', function(event){
   event.preventDefault();
@@ -39,6 +39,13 @@ $('#submit-button').on('click', function(event){
 
 })
 
+if (currentTime === moment().startOf("day")){
+  database.ref("child", function(snap){
+    var startReset = moment(snap.val().start).add(1, 'd');
+    
+  })
+}
+
 database.ref().on('child_added', buildSchedule),function(err){
   console.log(err.code)};
 
@@ -48,7 +55,10 @@ function buildSchedule(snap){
   var displayDestination = $('<td>').append(snap.val().destination);
   var displayFrequency = $('<td>').append(snap.val().frequency);
   var startTime = moment(snap.val().start,"HH:mm")
-  startTime = moment()
+  // console.log(moment(snap.val().start))
+  console.log(startTime)
+
+  // startTime = moment()
   
   var currentTime = moment()
 
@@ -64,7 +74,7 @@ function buildSchedule(snap){
     var timeRemainder = timeDifference % snap.val().frequency;
     var timeUntil = snap.val().frequency - timeRemainder;
     var next = moment().add(timeUntil, "minutes");
-    console.log(next)
+    // console.log(next)
     // console.log("second")
 
   // }
