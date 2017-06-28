@@ -28,7 +28,12 @@ $('#submit-button').on('click', function(){
     startedAt : firebase.database.ServerValue.TIMESTAMP
   })
 
-  console.log('attempt to push')
+  // console.log('attempt to push')
+
+  $('#train-route').val('');
+  $('#train-destination').val('');
+  $('#train-start').val('');
+  $('#train-frequency').val('')
 
 })
 
@@ -51,14 +56,6 @@ database.ref().on('child_added', function(snap){
   var timeUntil = snap.val().frequency - timeRemainder;
   var next = moment().add(timeUntil, "minutes")
 
-  // if (moment(currentTime).isBefore(startTime)){
-  //   next = startTime;
-  //   console.log(next)
-  // }
-
-  // else {
-  //   next = moment(startTime).toNow()
-  // }
   console.log(next)
   
   var displayNext = $('<td>').append(moment(next).format("h:mm a"));
