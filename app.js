@@ -11,7 +11,7 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-$('#submit-button').on('click', function(){
+$('#submit-button').on('click', function(event){
   event.preventDefault();
 
   var newRoute = $('#train-route').val().trim();
