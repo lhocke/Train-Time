@@ -17,7 +17,7 @@ $('#submit-button').on('click', function(){
   var newRoute = $('#train-route').val().trim();
   var newDestination = $('#train-destination').val().trim();
   var newStart = $('#train-start').val().trim();
-  console.log(newStart);
+  // console.log(newStart);
   var newFrequency = $('#train-frequency').val().trim();
 
   database.ref().push({
@@ -37,17 +37,19 @@ $('#submit-button').on('click', function(){
 
 })
 
-database.ref().on('child_added', function(snap){
-  console.log(snap.val().start)
+database.ref().on('child_added', buildSchedule),function(err){
+  console.log(err.code)};
+
+function buildSchedule(snap){
   var routeInfo = $('<tr>');
   var displayRoute = $('<td>').append(snap.val().route);
   var displayDestination = $('<td>').append(snap.val().destination);
   var displayFrequency = $('<td>').append(snap.val().frequency);
   var startTime = moment(snap.val().start,"HH:mm")
-  console.log(startTime)
+  // console.log(startTime)
   
   var currentTime = moment()
-  console.log(currentTime)
+  // console.log(currentTime)
 
   var frequencyUpdate = moment(startTime).subtract(1, "days");
   var currentTime = moment();
@@ -56,7 +58,7 @@ database.ref().on('child_added', function(snap){
   var timeUntil = snap.val().frequency - timeRemainder;
   var next = moment().add(timeUntil, "minutes")
 
-  console.log(next)
+  // console.log(next)
   
   var displayNext = $('<td>').append(moment(next).format("h:mm a"));
   var displayMinutes = $('<td>').append(timeUntil);
@@ -64,6 +66,8 @@ database.ref().on('child_added', function(snap){
 
 
   routeInfo.append(displayRoute, displayDestination, displayFrequency, displayNext, displayMinutes)
-  console.log(routeInfo)
-  $('#schedule').append(routeInfo)
-})
+  // console.log(routeInfo)
+  $('#schedule').append(routeInfo);
+  // setInterval(buildSchedule, 30000);
+}
+
