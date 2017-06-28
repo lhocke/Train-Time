@@ -1,20 +1,25 @@
-#intro, #schedule-header, #form-header{
-	background: #e57b1f;
-}
-body{
+
+body {
 	background: #4191d2;
 }
-#schedule-body, #form-body{
-	background: #efb17b;
+
+#intro, #schedule-header, #form-header {
+	background: #e57b1f;
+	color: #000000;
 }
-#train-schedule{
+
+#schedule-body, #form-body {
+	background: #efb17b;
+	color: #000000;
+}
+#train-schedule {
 	background: #61d2f5;
 }
 
-.container{
+.container {
 	margin-top: 10px;
 }
 
-#schedule-header, #form-header{
+#schedule-header, #form-header {
 	font-weight: bold;
 }

@@ -10,9 +10,16 @@ var config = {
 firebase.initializeApp(config);
 
 var database = firebase.database();
+var currentTime = moment();
+console.log(currentTime);
 
 $('#submit-button').on('click', function(event){
   event.preventDefault();
+
+  if ($('input').val() === ('')) {
+    alert("Please Fill All Text Boxes")
+    return false
+  }
 
   var newRoute = $('#train-route').val().trim();
   var newDestination = $('#train-destination').val().trim();
@@ -29,11 +36,11 @@ $('#submit-button').on('click', function(event){
   })
 
   // console.log('attempt to push')
-
-  $('#train-route').val('');
-  $('#train-destination').val('');
-  $('#train-start').val('');
-  $('#train-frequency').val('')
+  $('input').val('')
+  // $('#train-route').val('');
+  // $('#train-destination').val('');
+  // $('#train-start').val('');
+  // $('#train-frequency').val('')
 
 })
 
@@ -46,17 +53,38 @@ function buildSchedule(snap){
   var displayDestination = $('<td>').append(snap.val().destination);
   var displayFrequency = $('<td>').append(snap.val().frequency);
   var startTime = moment(snap.val().start,"HH:mm")
+  startTime = moment()
   // console.log(startTime)
   
   var currentTime = moment()
   // console.log(currentTime)
 
-  var frequencyUpdate = moment(startTime).subtract(1, "days");
-  var currentTime = moment();
-  var timeDifference = moment().diff(moment(frequencyUpdate), "minutes");
-  var timeRemainder = timeDifference % snap.val().frequency;
-  var timeUntil = snap.val().frequency - timeRemainder;
-  var next = moment().add(timeUntil, "minutes")
+  if (currentTime.isBefore(startTime)){
+    next = startTime;
+    // console.log(next);
+    timeUntil = moment(next).toNow;
+    // console.log(timeUntil);
+    console.log("first")
+  }
+
+  // else {
+    // var frequencyUpdate = moment(startTime);
+    // console.log(frequencyUpdate)
+    var currentTime = moment();
+    var timeDifference = moment().diff(moment(startTime), "minutes");
+    console.log(timeDifference)
+    var timeRemainder = timeDifference % snap.val().frequency;
+    console.log(timeRemainder)
+    var timeUntil = snap.val().frequency - timeRemainder;
+    console.log(timeUntil)
+    var next = moment().add(timeUntil, "minutes");
+    console.log(next)
+    // console.log("second")
+
+  // }
+
+
+
 
   // console.log(next)
   
