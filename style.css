@@ -3,7 +3,7 @@ body {
 	background: #4191d2;
 }
 
-#intro, #schedule-header, #form-header {
+#schedule-header, #form-header {
 	background: #e57b1f;
 	color: #000000;
 }
@@ -19,6 +19,12 @@ body {
 .container {
 	margin-top: 10px;
 }
+
+#intro{
+	background: url("Winter-Train-Station.jpg");
+	color: #59ab26;
+}
+
 
 #schedule-header, #form-header {
 	font-weight: bold;

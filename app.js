@@ -51,14 +51,17 @@ if (currentTime === moment().startOf("day")){
 database.ref().on('child_added', buildSchedule),function(err){
   console.log(err.code)};
 
-function buildSchedule(snap){
+database.ref().on('child_changed', buildSchedule),function(err){
+  console.log(err.code);}
+
+function buildSchedule(snap, prevChildKey){
   var routeInfo = $('<tr>');
   var displayRoute = $('<td>').append(snap.val().route);
   var displayDestination = $('<td>').append(snap.val().destination);
   var displayFrequency = $('<td>').append(snap.val().frequency);
   var startTime = moment(snap.val().start,"HH:mm")
   // console.log(moment(snap.val().start))
-  console.log(startTime)
+  // console.log(startTime)
 
   // startTime = moment()
   
