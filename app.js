@@ -68,21 +68,22 @@ function buildSchedule(snap, prevChildKey){
   var currentTime = moment()
 
   if (currentTime.isBefore(startTime)){
-    next = startTime;
-    timeUntil = moment(next).toNow;
+    var next = startTime;
+    timeUntil = moment(next).diff(moment(),"minutes");
     console.log("first")
   }
 
-  // else {
-    var currentTime = moment();
+  else{
+    // var currentTime = moment();
     var timeDifference = moment().diff(moment(startTime), "minutes");
     var timeRemainder = timeDifference % snap.val().frequency;
     var timeUntil = snap.val().frequency - timeRemainder;
-    var next = moment().add(timeUntil, "minutes");
+    next = moment().add(timeUntil, "minutes");
+    
     // console.log(next)
     // console.log("second")
 
-  // }
+  }
 
 
 
