@@ -18,13 +18,13 @@ body {
 
 .container {
 	margin-top: 10px;
+	max-width: 98%;
 }
 
 #intro{
 	background: url("Winter-Train-Station.jpg");
-	color: #59ab26;
+	color: #000000;
 }
-
 
 #schedule-header, #form-header {
 	font-weight: bold;
