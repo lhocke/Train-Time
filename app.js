@@ -51,9 +51,10 @@ if (currentTime === moment().startOf("day")){
 database.ref().on('child_added', buildSchedule),function(err){
   console.log(err.code)};
 
-if (currentTime === moment().startOf('minute')){
-  database.ref("child", buildSchedule)
-}
+// if (currentTime === moment().startOf('minute')){
+//   console.log("new minute!")
+//   // database.ref("child", buildSchedule)
+// }
 // database.ref().on('child_changed', buildSchedule),function(err){
 //   console.log(err.code);}
 
