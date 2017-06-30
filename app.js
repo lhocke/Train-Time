@@ -33,9 +33,9 @@ $('#submit-button').on('click', function(event){
     start : newStart,
     frequency : newFrequency,
     startedAt : firebase.database.ServerValue.TIMESTAMP
-  })
+  });
 
-  $('input').val('')
+  $('input').val('');
 
 })
 // updates start time at mignight each day
@@ -48,15 +48,9 @@ if (currentTime === moment().startOf("day")){
   })
 }
 
+// update table every time a train is added
 database.ref().on('child_added', buildSchedule),function(err){
   console.log(err.code)};
-
-// if (currentTime === moment().startOf('minute')){
-//   console.log("new minute!")
-//   // database.ref("child", buildSchedule)
-// }
-// database.ref().on('child_changed', buildSchedule),function(err){
-//   console.log(err.code);}
 
 // take information stored in database and create table
 function buildSchedule(snap, prevChildKey){
@@ -93,6 +87,5 @@ function buildSchedule(snap, prevChildKey){
   routeInfo.append(displayRoute, displayDestination, displayFrequency, displayNext, displayMinutes);
   // console.log(routeInfo)
   $('#schedule').append(routeInfo);
-  // setInterval(buildSchedule, 30000);
 }
 

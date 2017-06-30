@@ -26,6 +26,10 @@ body {
 	color: #000000;
 }
 
+#welcome, #subtitle{
+	background: green;
+}
+
 #schedule-header, #form-header {
 	font-weight: bold;
 }
